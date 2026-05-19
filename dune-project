@@ -1,7 +1,9 @@
 (lang dune 3.10)
+
 (using directory-targets 0.1)
+
 (package
- (name website_of_ocaml)
+ (name emiletrotignon_github_io)
  (synopsis
   "Generate my personnal website from OCaml code and markdown files")
  (description
@@ -9,14 +11,26 @@
  (depends
   (ocaml
    (>= 5.1))
-  (embedded_ocaml_templates
-   (>= 0.8))
   (ppx_deriving
    (>= 5.2.1))
   (bos
    (>= 0.2.1))
-  (omd
-   (>= 2.0.0~alpha4))
-  dune
+  (cmarkit
+   (>= 0.3.0))
+  (tyre
+   (>= 0.5))
   (tyxml
-   (>= 5.1))))
+   (>= 5.1))
+  (cmdliner
+   (>= 1.3.0))
+  (brr
+   (>= 0.0.8))
+  highlexer
+  (ocamlgraph
+   (>= 2.2.0))
+  (gg
+   (>= 1.0.0))
+  (vg
+   (>= 0.9.5))
+  core
+  dune))
