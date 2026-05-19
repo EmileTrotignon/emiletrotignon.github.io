@@ -37,5 +37,7 @@
    (>= 1.0.0))
   (vg
    (>= 0.9.5))
+  (embedded_ocaml_templates
+   (>= 0.8))
   core
   dune))
