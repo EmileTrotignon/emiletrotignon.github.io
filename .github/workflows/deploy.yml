@@ -29,7 +29,7 @@ jobs:
 
       - name: Install OCaml dependencies
         run: |
-          opam pin add emiletrotignon_github_io.dev . --no-action --yes
+          opam pin add emiletrotignon_github_io.dev . --no-action --yes --kind path
           opam install emiletrotignon_github_io --deps-only --yes
 
       - name: Install Sass
