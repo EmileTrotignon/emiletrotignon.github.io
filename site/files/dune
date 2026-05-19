@@ -4,7 +4,7 @@
  (targets en.pdf)
  (alias site)
  (action
-  (run pdflatex ../en.tex)))
+  (run lualatex ../en.tex)))
 
 (rule
  (deps
@@ -13,4 +13,4 @@
  (alias site)
  (mode promote)
  (action
-  (run pdflatex ../fr.tex)))
+  (run lualatex ../fr.tex)))
