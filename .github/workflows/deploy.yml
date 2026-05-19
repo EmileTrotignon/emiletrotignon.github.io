@@ -25,12 +25,20 @@ jobs:
         uses: ocaml/setup-ocaml@v3
         with:
           ocaml-compiler: "5.4"
+          opam-pin: false
 
       - name: Install OCaml dependencies
         run: opam install . --deps-only --yes
 
       - name: Install Sass
         run: npm install -g sass
+
+      - name: Cache LaTeX packages
+        id: cache-texlive
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/apt/archives
+          key: texlive-${{ runner.os }}-v1
 
       - name: Install LaTeX
         run: |
