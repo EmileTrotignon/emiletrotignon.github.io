@@ -2,6 +2,8 @@
 
 (using directory-targets 0.1)
 
+(generate_opam_files true)
+
 (package
  (name emiletrotignon_github_io)
  (synopsis
