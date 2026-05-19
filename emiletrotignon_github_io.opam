@@ -13,6 +13,7 @@ depends: [
   "ocaml" {>= "5.1"}
   "ppx_deriving" {>= "5.2.1"}
   "bos" {>= "0.2.1"}
+  "rresult" {>= "0.7.0"}
   "cmarkit" {>= "0.3.0"}
   "tyre" {>= "1.0"}
   "tyxml" {>= "4.6.0"}

@@ -54,7 +54,7 @@ jobs:
             texlive-lang-french
 
       - name: Build site
-        run: opam exec -- dune build @site
+        run: opam exec -- dune build @site --keep-going
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
