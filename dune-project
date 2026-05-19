@@ -6,10 +6,13 @@
 
 (package
  (name emiletrotignon_github_io)
- (synopsis
-  "Generate my personnal website from OCaml code and markdown files")
- (description
-  "Generate my personnal website from OCaml code and markdown files")
+ (synopsis "Generate my personal website from OCaml code and markdown files")
+ (description "Generate my personal website from OCaml code and markdown files")
+ (maintainers "Emile Trotignon <emile.trotignon@gmail.com>")
+ (authors "Emile Trotignon")
+ (homepage "https://emiletrotignon.github.io")
+ (bug_reports "https://github.com/emiletrotignon/emiletrotignon.github.io/issues")
+ (license "MIT")
  (depends
   (ocaml
    (>= 5.1))

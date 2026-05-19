@@ -28,7 +28,9 @@ jobs:
           opam-pin: false
 
       - name: Install OCaml dependencies
-        run: opam install . --deps-only --yes
+        run: |
+          opam pin add emiletrotignon_github_io.dev . --no-action --yes
+          opam install emiletrotignon_github_io --deps-only --yes
 
       - name: Install Sass
         run: npm install -g sass
