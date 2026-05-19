@@ -24,7 +24,7 @@ let html_into_page ~path html =
 
 let html_of_markdown ~path (md : string) =
   html_into_page ~path
-    ( md |> Md_transform.insert_nbsp_in_string |> Cmarkit.Doc.of_string |> Md_transform.tranform
+    ( md |> Cmarkit.Doc.of_string |> Md_transform.tranform
     |> Cmarkit_html.of_doc ~safe:false )
 
 let auto_index ~path file (sub_files : Fpath.t list) =

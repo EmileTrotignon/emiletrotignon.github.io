@@ -83,16 +83,27 @@ let alt_flat tyre1 tyre2 =
 
 let ( <||> ) = alt_flat
 
-let str_nbsp txt = Tyre.(attach ("&nbsp;" ^ txt) (str " " *> str txt))
+let str_nbsp txt = Tyre.(const ("\u{00A0}" ^ txt) (str " " *> str txt))
 
 let insert_nbsp_in_string txt =
   Result.get_ok
     Tyre.(
-      replace (compile (str_nbsp ":" <||> str_nbsp ";" <||> str_nbsp "!")) txt )
+      replace (compile (str_nbsp ":" <|> str_nbsp ";" <|> str_nbsp "!")) Fun.id txt )
+
+let insert_nbsp =
+  let inline _m = function
+    | Inline.Text (t, meta) ->
+        let t' = insert_nbsp_in_string t in
+        if t' = t then `Default else Mapper.ret (Inline.Text (t', meta))
+    | _ ->
+        `Default
+  in
+  let mapper = Mapper.make ~inline () in
+  fun md -> Mapper.map_doc mapper md
 
 let suffix_md_to_html link =
   if String.ends_with ~suffix:".md" link then
     String.sub link 0 (String.length link - 3) ^ ".html"
   else link
 
-let tranform md = md |> image_legend |> map_link suffix_md_to_html
+let tranform md = md |> image_legend |> map_link suffix_md_to_html |> insert_nbsp
