@@ -1,4 +1,3 @@
-
 type t =
   { school: string Multi_string.t
   ; diploma: string Multi_string.t
@@ -25,7 +24,7 @@ let to_t' ?(escaper = Fun.id) language md_printer
   ; description=
       ( match description with
       | Some description ->
-           (md_printer (Multi_string.to_string language description))
+          md_printer (Multi_string.to_string language description)
       | None ->
           "" )
   ; location=

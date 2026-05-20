@@ -71,8 +71,8 @@ let emile =
                      récursifs en queue modulo constructeurs." )
                ~english:
                  (md
-                    "4.5-month internship tutored by Vincent Laviron and Pierre \
-                     Chambart. Generalisation of recursive tail-call \
+                    "4.5-month internship tutored by Vincent Laviron and \
+                     Pierre Chambart. Generalisation of recursive tail-call \
                      optimisation modulo constructors." ) )
           (v ~french:"OCamlpro, équipe Flambda"
              ~english:"OCamlpro, team Flambda" )
@@ -241,8 +241,8 @@ let emile =
                      [software](https://emiletrotignon.github.io/software).\n" )
                ~english:
                  (md
-                    " I really enjoy functional programming languages, as \
-                     well as advanced type systems. I have been programming in \
+                    " I really enjoy functional programming languages, as well \
+                     as advanced type systems. I have been programming in \
                      OCaml since my first year of university, and I am very \
                      passionate about this language. I have some experience \
                      with Scala and Rust, and I had a lot of fun exploring \

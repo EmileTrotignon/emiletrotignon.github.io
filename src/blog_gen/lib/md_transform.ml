@@ -88,7 +88,9 @@ let str_nbsp txt = Tyre.(const ("\u{00A0}" ^ txt) (str " " *> str txt))
 let insert_nbsp_in_string txt =
   Result.get_ok
     Tyre.(
-      replace (compile (str_nbsp ":" <|> str_nbsp ";" <|> str_nbsp "!")) Fun.id txt )
+      replace
+        (compile (str_nbsp ":" <|> str_nbsp ";" <|> str_nbsp "!"))
+        Fun.id txt )
 
 let insert_nbsp =
   let inline _m = function
@@ -106,4 +108,5 @@ let suffix_md_to_html link =
     String.sub link 0 (String.length link - 3) ^ ".html"
   else link
 
-let tranform md = md |> image_legend |> map_link suffix_md_to_html |> insert_nbsp
+let tranform md =
+  md |> image_legend |> map_link suffix_md_to_html |> insert_nbsp

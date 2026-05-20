@@ -32,5 +32,6 @@
  (action
   (copy ../src/jsoo/voronoi.bc.js ./voronoi.js)))
 
-(copy_files (alias site) (files icons/*.svg))
-
+(copy_files
+ (alias site)
+ (files icons/*.svg))

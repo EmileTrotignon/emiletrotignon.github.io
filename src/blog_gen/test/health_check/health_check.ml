@@ -21,7 +21,6 @@ let rec mentions path Blog.{name; content} =
   | Blog.File {content= _} ->
       false
   | Blog.Dir {index_html= _; index_source; sub} ->
-
       let path =
         match path with
         | [] ->
@@ -32,11 +31,11 @@ let rec mentions path Blog.{name; content} =
             ".." :: path
       in
       ( match index_source with
-      | None ->
-          false
-      | Some index_source ->
-          let regexp = path_regexp path in
-          contains index_source regexp )
+        | None ->
+            false
+        | Some index_source ->
+            let regexp = path_regexp path in
+            contains index_source regexp )
       || List.exists (mentions path) sub
 
 let check_mention path blog =

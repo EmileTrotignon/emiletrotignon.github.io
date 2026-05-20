@@ -12,7 +12,7 @@ let to_t' ?(escaper = Fun.id) language md_printer
   ; description=
       ( match description with
       | Some d ->
-            (md_printer (Multi_string.to_string language d) )
+          md_printer (Multi_string.to_string language d)
       | None ->
           "" ) }
 

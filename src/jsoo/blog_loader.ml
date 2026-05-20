@@ -96,8 +96,7 @@ let html_of_blog_page blog =
         @ [ ul
               (List.map
                  (fun {name= sub_name; _} ->
-                   li [a ~at:At.[href !%sub_name] [txt' (name_pretty sub_name)]]
-                   )
+                   li [a ~at:At.[href !%sub_name] [txt' (name_pretty sub_name)]] )
                  sub ) ] )
   | {name; content= File {url}} ->
       a ~at:At.[href url] [txt' name]
@@ -148,29 +147,27 @@ let rec load_dir ~name ~tree =
   let+ sub =
     tree
     |> Jv.to_list (fun elt ->
-           let open Brr_io.Fetch in
-           let name = Jv.to_string elt.%{"path"} in
-           let sub_url = Jv.to_jstr elt.%{"url"} in
-           let* response =
-             request (Request.v ~init:(Request.init ()) sub_url)
-           in
-           let response =
-             response |> result_get_msg ~msg:"load_dir: Fetch.request failed"
-           in
-           let* data =
-             response |> Response.as_body |> Body.json
-             |> Fut.map (result_get_msg ~msg:"load_dir: Body.json failed")
-           in
-           if name = "readme.md" then (
-             index_html :=
-               Some
-                 ( data.%{"content"} |> Jv.to_jstr |> github_base64_decode
-                 |> result_get_msg ~msg:"load_dir: github_base64_decode failed"
-                 |> Base64.data_to_binary_jstr |> Showdown.to_html ) ;
-             Fut.return None )
-           else
-             let+ sub = load ~name data in
-             Some sub )
+        let open Brr_io.Fetch in
+        let name = Jv.to_string elt.%{"path"} in
+        let sub_url = Jv.to_jstr elt.%{"url"} in
+        let* response = request (Request.v ~init:(Request.init ()) sub_url) in
+        let response =
+          response |> result_get_msg ~msg:"load_dir: Fetch.request failed"
+        in
+        let* data =
+          response |> Response.as_body |> Body.json
+          |> Fut.map (result_get_msg ~msg:"load_dir: Body.json failed")
+        in
+        if name = "readme.md" then (
+          index_html :=
+            Some
+              ( data.%{"content"} |> Jv.to_jstr |> github_base64_decode
+              |> result_get_msg ~msg:"load_dir: github_base64_decode failed"
+              |> Base64.data_to_binary_jstr |> Showdown.to_html ) ;
+          Fut.return None )
+        else
+          let+ sub = load ~name data in
+          Some sub )
     |> Fut.of_list
     |> Fut.map (List.filter_map Fun.id)
   in
@@ -205,7 +202,7 @@ let load_blog blog_url =
   let* contents =
     urls
     |> Array.map (fun md_url ->
-           request (Request.v ~init:(Request.init ()) (Jstr.of_string md_url)) )
+        request (Request.v ~init:(Request.init ()) (Jstr.of_string md_url)) )
     |> Array.to_list |> Fut.of_list
     |> Fut.map
          (List.map (result_get_msg ~msg:"load_blog: Fetch.request failed"))
@@ -221,14 +218,14 @@ let load_blog blog_url =
   let+ sub =
     List.combine names contents
     |> List.filter_map (fun (name, jv) ->
-           if name = "readme.md" then (
-             index_html :=
-               Some
-                 ( jv.%{"content"} |> Jv.to_jstr |> github_base64_decode
-                 |> result_get_msg ~msg:"load_blog: github_base64_decode failed"
-                 |> Base64.data_to_binary_jstr |> Showdown.to_html ) ;
-             None )
-           else Some (load ~name jv) )
+        if name = "readme.md" then (
+          index_html :=
+            Some
+              ( jv.%{"content"} |> Jv.to_jstr |> github_base64_decode
+              |> result_get_msg ~msg:"load_blog: github_base64_decode failed"
+              |> Base64.data_to_binary_jstr |> Showdown.to_html ) ;
+          None )
+        else Some (load ~name jv) )
     |> Fut.of_list
   in
   let index_html =

@@ -58,10 +58,10 @@ let rec load_dir ~path file : (content, Rresult.R.msg) result =
     | _ :: _ ->
         Error
           (`Msg
-            (Format.asprintf
-               "Found multiple file named readme.md in dir %a. Should not \
-                happen."
-               Fpath.pp file ) )
+             (Format.asprintf
+                "Found multiple file named readme.md in dir %a. Should not \
+                 happen."
+                Fpath.pp file ) )
   in
   let sub = List.filter (fun file -> Fpath.basename file <> "test") sub in
   let+ sub = list_map (load ~path) sub in

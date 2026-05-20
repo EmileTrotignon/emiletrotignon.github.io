@@ -3,4 +3,3 @@
  (names blog_loader script_404 highlight voronoi)
  ;(js_of_ocaml (flags --source-map-inline --debug-info))
  (libraries brr highlexer ocamlgraph gg vg vg.htmlc))
-
