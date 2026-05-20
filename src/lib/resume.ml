@@ -1,4 +1,4 @@
-open Core
+open StdLabels
 
 type t =
   { intro: string Multi_string.t
@@ -26,7 +26,7 @@ type t' =
   ; website: string
   ; birthdate: string }
 
-let to_t' ?(escaper = Core.Fn.id) language model
+let to_t' ?(escaper = Fun.id) language model
     ({ intro
      ; formations
      ; experiences

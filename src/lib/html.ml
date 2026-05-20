@@ -98,7 +98,7 @@ let resume (cv : Resume.t') =
         ~a:[a_class ["icon"]]
         ~src:{%eml|icons/<%- filename %>|} ~alt:filename ()
     in
-    match Core.String.lowercase s with
+    match String.lowercase_ascii s with
     | "ocaml" ->
         Some (icon_of_filename "ocaml-icon.svg")
     | "c++" | "cpp" ->

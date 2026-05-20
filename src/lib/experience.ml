@@ -1,4 +1,3 @@
-open Core
 
 type t =
   { title: string Multi_string.t
@@ -14,7 +13,7 @@ type t' =
   ; location: string
   ; date: string }
 
-let to_t' ?(escaper = Fn.id) language md_printer
+let to_t' ?(escaper = Fun.id) language md_printer
     ({title; description; company; location; date} : t) : t' =
   { title= escaper (Multi_string.to_string language title)
   ; description=

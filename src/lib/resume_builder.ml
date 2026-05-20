@@ -1,4 +1,3 @@
-open Core
 open Resume
 
 let latex_url text = "\\url{" ^ text ^ "}"
@@ -13,12 +12,11 @@ let to_latex (resume : t) language =
     | English ->
         Templates.latex_en (to_t' ~escaper language md_printer resume) )
 
+let html_escaper_pattern = Tyre.(compile (const "<br>" (str "\n")))
+
 let to_html (resume : t) language =
   let md_printer = Cmarkit_html.of_doc ~safe:false in
-  let escaper s =
-    let pattern = String.Search_pattern.create "\n" in
-    String.Search_pattern.replace_all pattern ~in_:s ~with_:"<br>"
-  in
+  let escaper s = Result.get_ok Tyre.(replace html_escaper_pattern Fun.id s) in
   Multi_string.(
     match language with
     | French ->

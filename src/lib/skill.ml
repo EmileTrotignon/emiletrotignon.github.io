@@ -5,7 +5,7 @@ type t =
 
 type t' = {name: string; strength: Strength.t; description: string}
 
-let to_t' ?(escaper = Core.Fn.id) language md_printer
+let to_t' ?(escaper = Fun.id) language md_printer
     ({name; strength; description} : t) : t' =
   { name= escaper (Multi_string.to_string language name)
   ; strength
