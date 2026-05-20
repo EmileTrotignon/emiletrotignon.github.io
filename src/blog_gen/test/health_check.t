@@ -1,4 +1,4 @@
-  $ ls
+cf  $ ls
   $ dune exec health_check  ../../../blog | sort
   "blog/ukraine/images/kyiv/arch_of_the_friendships_of_nations.jpg" is not mentionned
   "blog/ukraine/images/kyiv/archange_michael.jpg" is not mentionned
