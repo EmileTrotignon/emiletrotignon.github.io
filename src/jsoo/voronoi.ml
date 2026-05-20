@@ -236,9 +236,8 @@ let ( @% ) f arg = Jv.apply f [|arg|]
 let ( !% ) = Jstr.of_string
 
 let canvas_color canvas =
-  (Jv.global.%{"getComputedStyle"} @% Canvas.to_jv canvas).%{"getPropertyValue"}
-  @% Jv.of_string "color"
-  |> Jv.to_string
+  let style = Jv.global.%{"getComputedStyle"} @% Canvas.to_jv canvas in
+  Jv.call style "getPropertyValue" [|Jv.of_string "color"|] |> Jv.to_string
 
 let clear_canvas canvas =
   let context = C2d.get_context canvas in
