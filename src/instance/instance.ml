@@ -59,7 +59,7 @@ let emile =
                      Forgery attacks. "
                 end
             end
-            (I "Ahrefs") ~location:(I "Remote, Paris, France")
+            (I "Ahrefs") ~location:(I "Remote")
             (v ~fr:"Novembre 2024 - présent" ~en:"November 2024 - present")
         ; make
             (v ~fr:"Développeur" ~en:"Developer")
@@ -142,10 +142,9 @@ let emile =
                     "Stage de 6 semaines encadré par David Coeurjolly et \
                      Vincent Nivoliers. Le sujet du stage était \
                      d'échantillonner la surface d'une mesh potentiellement \
-                     défectueuse. J'ai beaucoup programmé en C++ pendant ces \
-                     six semaines. J'ai utilisé des outils tels que Polyscope \
-                     et LIBIGL. Mon rapport de stage est disponible à cette \
-                     adresse : \
+                     défectueuse. Programmation en C++. Outils: Polyscope, \
+                     LIBIGL.\n\
+                    \ \
                      [rapport.pdf](https://emiletrotignon.github.io/files/rapport.pdf)"
                 end
                 ~en:begin
@@ -153,11 +152,8 @@ let emile =
                     "Six-week internship tutored by David Coeurjolly and \
                      Vincent Nivoliers. My goal during this internship was to \
                      uniformly sample the surface of a potentially imperfect \
-                     mesh. During the six weeks, I spent a good portion of my \
-                     time programming in C++ and I used tools such as \
-                     Polyscope and LIBIGL. My internship report is available \
-                     here: \
-                     [emiletrotignon.github.io/files/rapport.pdf](https://emiletrotignon.github.io/files/rapport.pdf) "
+                     mesh. Implementation in C++ with Polyscope and LIBIGL. \
+                     [Internship report (french)](/files/rapport.pdf) "
                 end
             end
             (v ~fr:"Laboratoire LIRIS" ~en:"LIRIS laboratory")
@@ -172,23 +168,24 @@ let emile =
                   md
                     "Dans le cadre d'un mission pour la junior entreprise de \
                      l'ENS Paris-Saclay de 6 semaines, j'ai participé au \
-                     développement du site web d'Expert People, une nouvelle \
-                     plateforme de freelancing. Les technologies utilisées \
-                     sont Node.js et Express.js. J'ai notamment mis en place \
-                     un système pour remplir automatiquement le formulaire de \
-                     CV d'un utilisateur avec son CV Linkedin sous format PDF.\n\
-                     Le site d'Expert People : \
+                     développement du site web d'Expert People, une plateforme \
+                     de freelancing. Les technologies utilisées étaient \
+                     Node.js Express.js et MangoDB. J'ai notamment mis en \
+                     place un système pour remplir automatiquement le \
+                     formulaire de CV en parsant un CV Linkedin sous format \
+                     PDF.\n\
+                     Le site d'Expert People (plus en ligne) : \
                      [expertpeople.co](https://expertpeople.co/)"
                 end
                 ~en:begin
                   md
                     "During a six-week mission for the junior enterprise of \
                      ENS Paris-Saclay, I contributed to the website \
-                     development of Expert People, a new freelancing platform. \
-                     The technologies used were Node.js and Express.js. One of \
-                     my achievements was parsing LinkedIn resumes in PDF \
-                     format to auto-fill the resume form.\n\
-                     Expert People's website (in French) : \
+                     development of Expert People, a freelancing platform. The \
+                     stack was Node.js, Express.js, and MangoDB. One of my \
+                     achievements was parsing LinkedIn resumes in PDF format \
+                     to auto-fill the resume form.\n\
+                     Expert People's website (in French, and down by now) : \
                      [expertpeople.co](https://expertpeople.co/)"
                 end
             end
@@ -238,9 +235,7 @@ let emile =
             end
         ; make
             (v ~fr:"Développeur front-end" ~en:"Front end developer")
-            (I
-               "École Nationale Supérieure des Sciences de l'Information et \
-                des Bibliothèques" )
+            (I "ENSSIB")
             (v ~fr:"Juillet 2018" ~en:"July 2018")
             ~location:(I "Lyon, France")
             ~description:begin
