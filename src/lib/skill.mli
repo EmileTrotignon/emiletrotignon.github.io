@@ -13,7 +13,7 @@ val to_t' :
   -> t'
 
 val make :
-     ?description:Cmarkit.Doc.t Multi_string.t
+     ?description:string Multi_string.t
   -> string Multi_string.t
   -> Strength.t
   -> t

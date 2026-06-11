@@ -9,6 +9,8 @@ let to_string language multi_string =
   | V {french= french_s; english= english_s} -> (
     match language with French -> french_s | English -> english_s )
 
+let map f = function I s -> I (f s) | V {french; english} -> V {english = f english; french= f french}
+
 let i s = I s
 
 let v ~fr ~en = V {french= fr; english= en}

@@ -54,4 +54,7 @@ let to_t' ?(escaper = Fun.id) language md_printer
 
 let make ?description ?location ?date_start ?date_end ?result school diploma : t
     =
+  let description =
+    Option.map (Multi_string.map Cmarkit.Doc.of_string) description
+  in
   {school; diploma; description; location; date_start; date_end; result}

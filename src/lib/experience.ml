@@ -31,4 +31,7 @@ let to_t' ?(escaper = Fun.id) language md_printer
   ; date= escaper (Multi_string.to_string language date) }
 
 let make title ?description company ?location date : t =
+  let description =
+    Option.map (Multi_string.map Cmarkit.Doc.of_string) description
+  in
   {title; description; company; location; date}

@@ -16,4 +16,8 @@ let to_t' ?(escaper = Fun.id) language md_printer
       | None ->
           "" ) }
 
-let make ?description name strength : t = {name; strength; description}
+let make ?description name strength : t =
+  let description =
+    Option.map (Multi_string.map Cmarkit.Doc.of_string) description
+  in
+  {name; strength; description}

@@ -89,7 +89,8 @@ let page (cv : Resume.t') content =
        ; script ~a:[a_src "/highlight.js"] (txt "")
        ; script ~a:[a_src "/voronoi.js"] (txt "") ] )
 
-let txt = Unsafe.data
+let md str : [> `P] elt =
+  Unsafe.data (Cmarkit_html.of_doc ~safe:false (Cmarkit.Doc.of_string str))
 
 let resume (cv : Resume.t') =
   let icon_of_string s =
@@ -158,23 +159,25 @@ let resume (cv : Resume.t') =
           ( (if location <> "" then [txt (location ^ ", ")] else [])
           @ [txt (date_start ^ " - " ^ date_end)] )
       ; p [txt (diploma ^ (if result <> "" then " - " else "") ^ result)]
-      ; p [txt description] ]
+      ; md description ]
   in
   let experience ({title; description; company; location; date} : Experience.t')
       =
     div
       ~a:[a_class ["item"]]
-      [ h3 [txt (title ^ ", " ^ company)]
+      [ h3 [txt company]
       ; div
           ~a:[a_class ["subtitle"]]
-          [txt (location ^ (if location <> "" then ", " else "") ^ date)]
-      ; p [txt description] ]
+          ( [txt title]
+          @ (if location <> "" then [txt (", " ^ location)] else [])
+          @ [txt (", " ^ date)] )
+      ; md description ]
   in
   let skill ({name; strength= s; description} : Skill.t') =
     div
       ~a:[a_class ["item"]]
       [ h3 ~a:[a_id name; a_class ["strength-item"]] [txt name; strength s]
-      ; p [txt description] ]
+      ; md description ]
   in
   page cv
     [ sidebar
@@ -188,6 +191,7 @@ let resume (cv : Resume.t') =
     ; article
         ~a:[a_id "content"]
         [ h1 [txt "Resume"]
+        ; md cv.intro
         ; section ([h2 [txt "Formation"]] @ List.map formation cv.formations)
         ; section ([h2 [txt "Experience"]] @ List.map experience cv.experiences)
         ; section ([h2 [txt "Technical skills"]] @ List.map skill cv.skills) ]
@@ -202,25 +206,47 @@ let index cv =
         ~a:[a_id "content"]
         [ section
             [ p [txt "Welcome to my home page"]
-            ; p
-                [ txt
-                    {|I used to be a student in computer science at ENS Paris-Saclay, nowadays I am a dev at Tarides,
+            ; md
+                {|I used to be a student in computer science at ENS Paris-Saclay, nowadays I am a dev at Tarides,
 were I work on tools for ocaml like odoc and ocamlformat.
 
 I am very interested in the OCaml language and programming languages in general.
-You can check some of my projects out on my <a href="https://github.com/EmileTrotignon">github</a>,
+You can check some of my projects out on my [github](https://github.com/EmileTrotignon),
 and my resume on this website.|}
-                ] ] ] ]
+            ] ] ]
 
 type software = {url: string; name: string; description: string}
 
 let software cv =
   let one_software {url; name; description} =
-    li [a ~a:[a_href url] [txt name]; txt ", "; txt description]
+    let description_html =
+      let s =
+        Cmarkit_html.of_doc ~safe:false (Cmarkit.Doc.of_string description)
+        |> String.trim
+      in
+      let s =
+        if String.starts_with ~prefix:"<p>" s then
+          String.sub s 3 (String.length s - 3)
+        else s
+      in
+      if String.ends_with ~suffix:"</p>" s then
+        String.sub s 0 (String.length s - 4)
+      else s
+    in
+    li [a ~a:[a_href url] [txt name]; txt ", "; Unsafe.data description_html]
   in
   let breadcrumbs = breadcrumbs @@ Breadcrumbs.of_string_list ["software"] in
   let creations =
-    [ { url= "https://github.com/EmileTrotignon/embedded_ocaml_templates"
+    [ { url= "https://github.com/EmileTrotignon/ppx_format"
+      ; name= "ppx_format"
+      ; description=
+          {|printf style format string with string interpolation : `printf [%i "n={%d n}"]`|}
+      }
+    ; { url= "https://github.com/EmileTrotignon/gamelle"
+      ; name= "gamelle"
+      ; description=
+          "an OCaml 2D game library with browser and native backends." }
+    ; { url= "https://github.com/EmileTrotignon/embedded_ocaml_templates"
       ; name= "ocaml_embedded_templates"
       ; description= "a template engine that uses OCaml as its logic." }
     ; { url= "https://github.com/EmileTrotignon/highlexer"
@@ -237,10 +263,6 @@ let software cv =
     ; { url= "https://github.com/art-w/sherlodoc"
       ; name= "sherlodoc"
       ; description= "a search engine for OCaml documentation." }
-    ; { url= "https://github.com/art-w/gamelle"
-      ; name= "gamelle"
-      ; description=
-          "An OCaml 2D game library with browser and native backends." }
     ; { url= "https://github.com/ocaml/dune"
       ; name= "dune"
       ; description= "the OCaml build system." }
