@@ -61,7 +61,7 @@ let page (cv : Resume.t') content =
        ; link ~rel:[`Stylesheet] ~href:"/style.css" ()
        ; link ~rel:[`Stylesheet]
            ~href:
-             "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"
+             "https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
            ()
        ; link ~rel:[`Stylesheet]
            ~href:
@@ -147,33 +147,34 @@ let resume (cv : Resume.t') =
                 span [txt s.name] )
           :: [strength s.strength] ) ]
   in
-  let formation (f : Formation.t') =
+  let formation
+      ({school; diploma; description; location; date_start; date_end; result} :
+        Formation.t' ) =
     div
       ~a:[a_class ["item"]]
-      [ h3 [txt f.school]
+      [ h3 [txt school]
       ; div
           ~a:[a_class ["subtitle"]]
-          ( (if f.location <> "" then [txt (f.location ^ ", ")] else [])
-          @ [txt (f.date_start ^ " - " ^ f.date_end)] )
-      ; p [txt (f.diploma ^ (if f.result <> "" then " - " else "") ^ f.result)]
-      ; p [txt f.description] ]
+          ( (if location <> "" then [txt (location ^ ", ")] else [])
+          @ [txt (date_start ^ " - " ^ date_end)] )
+      ; p [txt (diploma ^ (if result <> "" then " - " else "") ^ result)]
+      ; p [txt description] ]
   in
-  let experience (e : Experience.t') =
+  let experience ({title; description; company; location; date} : Experience.t')
+      =
     div
       ~a:[a_class ["item"]]
-      [ h3 [txt e.title]
+      [ h3 [txt (title ^ ", " ^ company)]
       ; div
           ~a:[a_class ["subtitle"]]
-          [txt (e.location ^ (if e.location <> "" then ", " else "") ^ e.date)]
-      ; p [txt e.description] ]
+          [txt (location ^ (if location <> "" then ", " else "") ^ date)]
+      ; p [txt description] ]
   in
-  let skill (s : Skill.t') =
+  let skill ({name; strength= s; description} : Skill.t') =
     div
       ~a:[a_class ["item"]]
-      [ h3
-          ~a:[a_id s.name; a_class ["strength-item"]]
-          [txt s.name; strength s.strength]
-      ; p [txt s.description] ]
+      [ h3 ~a:[a_id name; a_class ["strength-item"]] [txt name; strength s]
+      ; p [txt description] ]
   in
   page cv
     [ sidebar
@@ -186,7 +187,8 @@ let resume (cv : Resume.t') =
     ; breadcrumbs
     ; article
         ~a:[a_id "content"]
-        [ section ([h2 [txt "Formation"]] @ List.map formation cv.formations)
+        [ h1 [txt "Resume"]
+        ; section ([h2 [txt "Formation"]] @ List.map formation cv.formations)
         ; section ([h2 [txt "Experience"]] @ List.map experience cv.experiences)
         ; section ([h2 [txt "Technical skills"]] @ List.map skill cv.skills) ]
     ]

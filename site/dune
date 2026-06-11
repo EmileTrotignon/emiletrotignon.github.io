@@ -6,12 +6,6 @@
  (action
   (run sass style.sass style.css)))
 
-(rule
- (targets fr.tex en.tex resume.html index.html 404.html software.html)
- (alias site)
- (deps ../src/main.exe Gemfile Gemfile.lock _config.yml)
- (action
-  (run ../src/main.exe)))
 
 (rule
  (aliases site blog)
@@ -35,3 +29,10 @@
 (copy_files
  (alias site)
  (files icons/*.svg))
+
+(rule
+ (targets fr.tex en.tex resume.html index.html 404.html software.html)
+ (alias site)
+ (deps ../src/main.exe)
+ (action
+  (run ../src/main.exe)))

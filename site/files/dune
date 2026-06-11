@@ -1,6 +1,7 @@
 (rule
  (deps
-  (file ../en.tex))
+  (file ../en.tex)
+  (file rapport.pdf))
  (targets en.pdf)
  (alias site)
  (action
@@ -11,6 +12,5 @@
   (file ../fr.tex))
  (targets fr.pdf)
  (alias site)
- (mode promote)
  (action
   (run lualatex ../fr.tex)))
