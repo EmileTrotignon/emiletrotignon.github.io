@@ -11,4 +11,4 @@ let to_string language multi_string =
 
 let i s = I s
 
-let v ~fr ~en = V {french=fr; english=en}
+let v ~fr ~en = V {french= fr; english= en}

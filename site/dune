@@ -6,7 +6,6 @@
  (action
   (run sass style.sass style.css)))
 
-
 (rule
  (aliases site blog)
  (deps
