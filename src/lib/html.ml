@@ -191,6 +191,12 @@ let resume (cv : Resume.t') =
     ; article
         ~a:[a_id "content"]
         [ h1 [txt "Resume"]
+        ; p
+            [ txt "Download this in "
+            ; a ~a:[a_href "/files/resume_en.pdf"] [txt "pdf format"]
+            ; txt ". Or in "
+            ; a ~a:[a_href "/files/resume_fr.pdf"] [txt "french"]
+            ; txt "." ]
         ; md cv.intro
         ; section ([h2 [txt "Formation"]] @ List.map formation cv.formations)
         ; section ([h2 [txt "Experience"]] @ List.map experience cv.experiences)

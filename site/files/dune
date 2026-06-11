@@ -1,16 +1,19 @@
 (rule
  (deps
-  (file ../en.tex)
-  (file rapport.pdf))
- (targets en.pdf)
+  (file ../en.tex))
+ (target resume_en.pdf)
  (alias site)
  (action
-  (run lualatex ../en.tex)))
+  (progn (run lualatex ../en.tex) (run mv en.pdf %{target}))))
 
 (rule
  (deps
   (file ../fr.tex))
- (targets fr.pdf)
+ (target resume_fr.pdf)
  (alias site)
  (action
-  (run lualatex ../fr.tex)))
+  (progn (run lualatex ../fr.tex) (run mv fr.pdf %{target}))))
+
+(alias
+ (name site)
+ (deps (glob_files ./*.pdf)))

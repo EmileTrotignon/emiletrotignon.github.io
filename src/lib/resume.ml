@@ -1,7 +1,7 @@
 open StdLabels
 
 type t =
-  { intro: string Multi_string.t
+  { intro: Cmarkit.Doc.t Multi_string.t
   ; formations: Formation.t list
   ; experiences: Experience.t list
   ; skills: Skill.t list
@@ -39,7 +39,7 @@ let to_t' ?(escaper = Fun.id) language model
      ; website
      ; birthdate } :
       t ) : t' =
-  { intro= escaper (Multi_string.to_string language intro)
+  { intro= model (Multi_string.to_string language intro)
   ; formations= List.map ~f:(Formation.to_t' ~escaper language model) formations
   ; experiences=
       List.map ~f:(Experience.to_t' ~escaper language model) experiences
@@ -54,7 +54,7 @@ let to_t' ?(escaper = Fun.id) language model
 
 let make ~intro ~formations ~experiences ~skills ~languages ~firstname ~lastname
     ~phonenumber ~email ~website ~birthdate : t =
-  { intro
+  { intro= Multi_string.map Cmarkit.Doc.of_string intro
   ; formations
   ; experiences
   ; skills

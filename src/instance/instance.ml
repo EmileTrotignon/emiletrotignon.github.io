@@ -96,11 +96,11 @@ let experiences =
           ~fr:
             "Stage de 4.5 mois supervisé par Vincent Laviron et Pierre \
              Chambart. Généralisation de l'optimisation des appels récursifs \
-             en queue modulo constructeurs."
+             en queue modulo constructeurs. [report_m2.pdf](/files/report_m2.pdf)"
           ~en:
             "4.5-month internship tutored by Vincent Laviron and Pierre \
              Chambart. Generalisation of recursive tail-call optimisation \
-             modulo constructors."
+             modulo constructors. [report_m2.pdf](/files/report_m2.pdf)"
       end
       (v ~fr:"OCamlpro, équipe Flambda" ~en:"OCamlpro, team Flambda")
       ~location:(I "Paris, France")

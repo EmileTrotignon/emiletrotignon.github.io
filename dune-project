@@ -1,4 +1,4 @@
-(lang dune 3.10)
+(lang dune 3.23)
 
 (using directory-targets 0.1)
 

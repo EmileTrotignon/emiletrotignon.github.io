@@ -1,5 +1,5 @@
 type t =
-  { intro: string Multi_string.t
+  { intro: Cmarkit.Doc.t Multi_string.t
   ; formations: Formation.t list
   ; experiences: Experience.t list
   ; skills: Skill.t list
