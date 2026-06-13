@@ -224,6 +224,15 @@ nav#sidebar
         border: var(--fg) solid thin
         border-radius: 5px
         background-color: var(--bg)
+    section#skills
+        h2
+            margin-bottom: 5px
+        p
+            margin-top: 5px
+        :first-child
+            margin-top: 14px
+        :last-child
+            margin-bottom: 14px
     section#navmenu
         overflow: hidden
         padding: 0
@@ -306,8 +315,10 @@ nav#sidebar
         font-size: 1.2rem
     h3
         font-size: 1.1rem
+    .job_title
+        font-weight: lighter
     .subtitle
-        font-size: 0.8em
+        font-size: 0.9em
         font-weight: 200
         font-family: 'Fira Sans', sans-serif
         font-style: italic
@@ -319,6 +330,9 @@ nav#sidebar
         padding-right: 1rem
         &:hover
             border-left: 2px var(--fg) solid
+    .hint
+        color: var(--fg2)
+        font-size: 0.9em
     ul
         padding-left: 1em
         li

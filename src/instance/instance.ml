@@ -20,14 +20,16 @@ let intro =
 
 let formations =
   let open Formation in
-  [ make (I "École Normale Supérieure Paris-Saclay")
+  [ make (I "ENS Paris-Saclay")
       (v ~fr:"Master Parisien de Recherche en Informatique"
-         ~en:"Master's degree in Computer Science Research (MPRI)" )
-      ~date_start:(I "2020") ~date_end:(I "2022")
-  ; make (I "École Normale Supérieure Paris-Saclay")
-      (v ~fr:"L3 Informatique" ~en:"Bachelor in Computer Science")
-      ~date_start:(I "2019") ~date_end:(I "2020")
-  ; make (I "Université Lyon 1 Claude-Bernard")
+         ~en:"Masters in Computer Science Research (MPRI)" )
+      (* ~date_start:(I "2020") *)
+      ~date_end:(I "2022")
+  ; make (I "ENS Paris-Saclay")
+      (v ~fr:"Licence d'Informatique" ~en:"Bachelor in Computer Science")
+      (*~date_start:(I "2019")*)
+      ~date_end:(I "2020")
+    (*; make (I "Université Lyon 1 Claude-Bernard")
       (v ~fr:"L2 Informatique - mathématiques"
          ~en:"Second year of Bachelor in Computer Science and Mathematics" )
       ~date_start:(I "2018") ~date_end:(I "2019")
@@ -40,12 +42,13 @@ let formations =
       (v ~fr:"Baccalauréat scientifique"
          ~en:"High school diploma with science focus" )
       ~date_start:(I "2016") ~date_end:(I "2017") ~location:(I "Lyon")
-      ~result:(v ~fr:"Mention Très Bien" ~en:"with honours") ]
+      ~result:(v ~fr:"Mention Très Bien" ~en:"with honours")*)
+  ]
 
 let experiences =
   let open Experience in
   [ make
-      (v ~fr:"Développeur" ~en:"Developer")
+      (v ~fr:"Ingénieur logiciel" ~en:"Software Engineer")
       ~description:begin
         v
           ~fr:
@@ -64,12 +67,12 @@ let experiences =
              system (buildkite). Wrote a URL parser/printer to prevent \
              Server-Side Request Forgery attacks. Contributed to a ppx for \
              type-safe clickhouse queries. Slack bot integrating with Github \
-             and Buildkite"
+             and Buildkite."
       end
       (I "Ahrefs") ~location:(I "Remote")
-      (v ~fr:"Novembre 2024 - présent" ~en:"November 2024 - present")
+      (v ~fr:"2024 - présent" ~en:"2024 - present")
   ; make
-      (v ~fr:"Développeur" ~en:"Developer")
+      (v ~fr:"Ingénieur logiciel" ~en:"Software Engineer")
       ~description:begin
         v
           ~fr:
@@ -87,8 +90,11 @@ let experiences =
              dune build system."
       end
       (I "Tarides") ~location:(I "Paris, France")
-      (v ~fr:"Septembre 2022 - présent" ~en:"September 2022 - present")
-  ; make
+      (v ~fr:"2022 - 2024" ~en:"2022 - 2024") ]
+
+let internships =
+  let open Experience in
+  [ make
       (v ~fr:"Stage de recherche en informatique"
          ~en:"Research internship in computer science" )
       ~description:begin
@@ -96,11 +102,11 @@ let experiences =
           ~fr:
             "Stage de 4.5 mois supervisé par Vincent Laviron et Pierre \
              Chambart. Généralisation de l'optimisation des appels récursifs \
-             en queue modulo constructeurs. [report_m2.pdf](/files/report_m2.pdf)"
+             en queue modulo constructeurs. [Rapport](/files/report_m2.pdf)."
           ~en:
             "4.5-month internship tutored by Vincent Laviron and Pierre \
-             Chambart. Generalisation of recursive tail-call optimisation \
-             modulo constructors. [report_m2.pdf](/files/report_m2.pdf)"
+             Chambart. Generalization of recursive tail-call optimisation \
+             modulo constructors. [Report](/files/report_m2.pdf)."
       end
       (v ~fr:"OCamlpro, équipe Flambda" ~en:"OCamlpro, team Flambda")
       ~location:(I "Paris, France")
@@ -132,20 +138,18 @@ let experiences =
          ~en:"Research internship in computational geometry" )
       ~description:begin
         v
-          ~fr:begin
+          ~fr:
             "Stage de 6 semaines encadré par David Coeurjolly et Vincent \
              Nivoliers. Le sujet du stage était d'échantillonner la surface \
              d'une mesh potentiellement défectueuse. Programmation en C++. \
              Outils: Polyscope, LIBIGL.\n\
-            \ [rapport.pdf](https://emiletrotignon.github.io/files/rapport.pdf)"
-          end
-          ~en:begin
+            \ [Rapport](https://emiletrotignon.github.io/files/rapport.pdf)."
+          ~en:
             "Six-week internship tutored by David Coeurjolly and Vincent \
              Nivoliers. My goal during this internship was to uniformly sample \
              the surface of a potentially imperfect mesh. Implementation in \
-             C++ with Polyscope and LIBIGL. [Internship report \
-             (french)](/files/rapport.pdf) "
-          end
+             C++ with Polyscope and LIBIGL. [Report \
+             (french)](/files/rapport.pdf)."
       end
       (v ~fr:"Laboratoire LIRIS" ~en:"LIRIS laboratory")
       ~location:(I "Lyon, France")
@@ -154,26 +158,17 @@ let experiences =
       (v ~fr:"Développeur Node.js fullstack" ~en:"Fullstack Node.js developer")
       ~description:begin
         v
-          ~fr:begin
-            "Dans le cadre d'un mission pour la junior entreprise de l'ENS \
-             Paris-Saclay de 6 semaines, j'ai participé au développement du \
-             site web d'Expert People, une plateforme de freelancing. Les \
-             technologies utilisées étaient Node.js Express.js et MangoDB. \
-             J'ai notamment mis en place un système pour remplir \
-             automatiquement le formulaire de CV en parsant un CV Linkedin \
-             sous format PDF.\n\
-             Le site d'Expert People (plus en ligne) : \
-             [expertpeople.co](https://expertpeople.co/)"
-          end
-          ~en:begin
-            "During a six-week mission for the junior enterprise of ENS \
-             Paris-Saclay, I contributed to the website development of Expert \
-             People, a freelancing platform. The stack was Node.js, \
-             Express.js, and MangoDB. Parsed LinkedIn resumes in PDF format to \
-             auto-fill the resume form.\n\
-             Expert People's website (in French, and down by now) : \
-             [expertpeople.co](https://expertpeople.co/)"
-          end
+          ~fr:
+            "Mission  de 6 semaines pour la junior entreprise de l'ENS \
+             Paris-Saclay de 6 semaines. Développement d'une plateforme de \
+             freelancing. Node.js. Express.js et MangoDB. J'ai notamment mis \
+             en place un système pour remplir automatiquement le formulaire de \
+             CV en parsant un CV LinkedIn sous format PDF."
+          ~en:
+            "Six-week mission for the junior enterprise of ENS Paris-Saclay. \
+             Website development of a freelancing platform. The stack was \
+             Node.js, Express.js, and MangoDB. Parsed LinkedIn resumes in PDF \
+             format to auto-fill the resume form."
       end
       (v ~fr:"Junior entreprise de l'ENS Paris-Saclay"
          ~en:"Junior enterprise of ENS Paris-Saclay" )
@@ -208,7 +203,8 @@ let experiences =
           ~fr:begin
             "Stage de 2 mois. Écriture de shaders HLSL, découverte de DirectX, \
              Windows Form, expérience avec OpenCV.\n\
-             Expérience extrêmement enrichissante dans une entreprise étrangère"
+             Expérience extrêmement enrichissante dans une entreprise \
+             étrangère."
           end
           ~en:begin
             "Two-month internship. HLSL shaders, introduction to DirectX and \
@@ -223,161 +219,27 @@ let experiences =
       ~location:(I "Lyon, France")
       ~description:begin
         v
-          ~fr:begin
+          ~fr:
             "Intégration graphique du site web de l'ENSSIB: \
              [enssib.fr](http://www.enssib.fr)"
-          end
-          ~en:begin
+          ~en:
             "Graphical integration of the French school for library curators \
              website's: [enssib.fr](http://www.enssib.fr)"
-          end
       end ]
 
 let emile =
   Resume.make ~firstname:(I "Émile") ~lastname:(I "Trotignon") ~intro
-    ~formations ~experiences
-    ~languages:
-      Language.
-        [ make (v ~fr:"Anglais" ~en:"English") Strong
-        ; make (v ~fr:"Français" ~en:"French") VeryStrong ]
+    ~formations ~experiences ~internships
+    ~languages:[v ~fr:"Anglais" ~en:"English"; v ~fr:"Français" ~en:"French"]
     ~skills:
-      [ skill
-          (v ~en:"Functional programming" ~fr:"Programmation fonctionnelle")
-          VeryStrong
-          ~description:begin
-            v
-              ~fr:
-                "J'aime beaucoup les langages de programmation fonctionnels, \
-                 ainsi que les systèmes de type avancés. Je programme en Ocaml \
-                 depuis le début de mes études, et j'apprécie beaucoup ce \
-                 langage. J'ai un peu d'expérience en Scala ainsi qu'en Rust, \
-                 et j'ai beaucoup expérimenté avec les fonctionnalités \
-                 avancées de C++.\n\
-                 J'ai aussi publié deux paquets sur Opam, le gestionnaire de \
-                 paquets d'Ocaml, ainsi que contribué à plusieurs d'entre eux \
-                 : [software](https://emiletrotignon.github.io/software).\n"
-              ~en:
-                " I really enjoy functional programming languages, as well as \
-                 advanced type systems. I have been programming in OCaml since \
-                 my first year of university, and I am very passionate about \
-                 this language. I have some experience with Scala and Rust, \
-                 and I had a lot of fun exploring advanced C++ features.\n\n\
-                 I also published two packages on Opam, the OCaml package \
-                 manager, and contributed to many: \
-                 [software](https://emiletrotignon.github.io/software)."
-          end
-      ; skill (I "Compilation") Strong
-          ~description:begin
-            v
-              ~fr:
-                "La compilation des langages de programmation est un sujet qui \
-                 m'intéresse beaucoup. Dans ce domaine, j'ai écrit un type \
-                 checker pour le système de type f-omega lors d'un cours de \
-                 M2. Le code est disponible ici : \
-                 [github/f-omega](https://github.com/EmileTrotignon/f-omega).\n\
-                \ Lors d'un cours de M1 j'ai écrit un compilateur pour un  \
-                 langage de programmation du style ML vers X86.\n\
-                 Le code est disponible ici: \
-                 [github/cours-compilation-p7](https://github.com/EmileTrotignon/cours-compilation-p7).\n\
-                 J'ai aussi programmé en 2019 un compilateur pour un \
-                 sous-ensemble du langage C vers X86: \
-                 [github/mcc](https://github.com/EmileTrotignon/mcc)"
-              ~en:
-                "I am very interested in compilation. In this domain, for a M2 \
-                 course, I have written a type checker for the f-omega type \
-                 system. The code is available \
-                 here:[github/f-omega](https://github.com/EmileTrotignon/f-omega).\n\
-                 For a M1 course, I have written a compiler for an ML-style \
-                 language to X86. The code is available here: \
-                 [github/cours-compilation-p7](https://github.com/EmileTrotignon/cours-compilation-p7).\n\
-                 I have also programmed a compiler for a subset of the C \
-                 language to X86 in 2019: \
-                 [github/mcc](https://github.com/EmileTrotignon/mcc)"
-          end
-      ; skill
-          (v ~fr:"Informatique fondamentale" ~en:"Fundamental Computer Science")
-          Strong
-          ~description:begin
-            v
-              ~fr:
-                "Durant mes études, j'ai étudié différents aspects de \
-                 l'informatique théorique :\n\
-                 Sémantique des langages de programmation, théorie du calcul \
-                 parallèle en mémoire partagée, langages formels, \
-                 calculabilité, logique.\n\
-                 Cela m'apporte beaucoup dans ma compréhension de \
-                 l'informatique en général, en plus des compétences \
-                 spécifiques à chaque domaine."
-              ~en:
-                "I have studied different aspects of fundamental Computer \
-                 Science :\n\
-                 Programming languages semantics, theory of parallel computing \
-                 with shared memory, formal languages, calculability, logic.\n\
-                 This enhances my understanding of computer science in \
-                 general, in addition to the particular skills acquired."
-          end
-      ; skill (I "Proof assistants and verification") Basic
-          ~description:begin
-            v
-              ~fr:
-                "J'ai suivi un cours sur l'assistant de preuve Coq, et l'outil \
-                 de vérification Why3. Je ne suis pas autonome avec ces \
-                 outils, mais j'aimerai beaucoup en apprendre plus."
-              ~en:
-                "I have taken a course on the Coq proof assistant, and one on \
-                 the Why3 verification framework. I am not fluent with either \
-                 of these tools, but I would love to become more familiar with \
-                 them."
-          end
-      ; skill (I "GUIs") Intermediate
-          ~description:begin
-            v
-              ~fr:
-                "Expérience avec quelques frameworks d'interfaces graphiques :\n\
-                 Qt et Dear ImGUI pour C++, WinForm pour C#, Swing pour Scala, \
-                 Tkinter pour Python. J'ai aussi écris le système d'interface \
-                 graphique dans [gamelle](https://github.com/art-w/gamelle/)"
-              ~en:
-                "I have experience with a few frameworks for programming GUIs :\n\
-                 Qt and Dear ImGUI with C++, WinForm with C#, Swing with \
-                 Scala, Tkinter with Python.\n\
-                 I also co-authored the UI module in \
-                 [gamelle](https://github.com/art-w/gamelle/), a game library \
-                 for OCaml."
-          end
-      ; skill
-          (v ~fr:"Développement web" ~en:"Web development")
-          Intermediate
-          ~description:begin
-            v
-              ~fr:
-                "Front-end : Bonne connaissance de HTML/CSS. J'ai exercé cette \
-                 compétence professionnellement lors de l'été 2018.\n\n\
-                 Back-end : Expérience professionnelle de développement d'une \
-                 application Node.js. Contributions au webdesign des pages \
-                 générées par odoc."
-              ~en:
-                "Front-end : Good knowledge of HTML and CSS. One month \
-                 experience during the summer of 2018.\n\n\
-                 Back-end : Professional experience developing a Node.js web \
-                 app. Contributions to the design of odoc documentation pages."
-          end
-      ; skill
-          (v ~fr:"Divers" ~en:"Miscellaneous")
-          Strong
-          ~description:begin
-            v
-              ~fr:
-                "Utilisation d'un système Unix avec la ligne de commande : \
-                 manipulation de fichier, Git, SSH.\n\
-                 Édition d'image avec GIMP.\n\
-                 Rédaction de documents en Latex. "
-              ~en:
-                "Use of a Unix system with the command line : file \
-                 manipulation, Git, SSH.\n\
-                 Image editing with GIMP and Inkscape.\n\
-                 Typesetting with Latex."
-          end ]
+      [ I "OCaml"
+      ; I "git"
+      ; I "Unix"
+      ; I "SQL"
+      ; I "C#"
+      ; I "Node.js"
+      ; I "C++"
+      ; I "Python" ]
     ~phonenumber:(I "+33 7 82 89 83 58") ~email:(I "emile.trotignon@gmail.com")
     ~website:(I "emiletrotignon.github.io")
     ~birthdate:(v ~fr:"30 juillet 1999" ~en:"July 30th, 1999")

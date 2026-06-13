@@ -17,7 +17,7 @@ let contact (cv : Resume.t') =
             [ img ~src:"/icons/github-icon.svg" ~alt:"Github icon"
                 ~a:[a_class ["icon"]]
                 ()
-            ; txt "Github" ] ]
+            ; txt "Github: EmileTrotignon" ] ]
     ; p
         [ a
             ~a:[a_href {%eml|mailto:<%- cv.email %>|}]
@@ -93,7 +93,7 @@ let md str : [> `P] elt =
   Unsafe.data (Cmarkit_html.of_doc ~safe:false (Cmarkit.Doc.of_string str))
 
 let resume (cv : Resume.t') =
-  let icon_of_string s =
+  let _icon_of_string s =
     let icon_of_filename filename =
       img
         ~a:[a_class ["icon"]]
@@ -111,43 +111,7 @@ let resume (cv : Resume.t') =
     | _ ->
         None
   in
-  let strength s =
-    match (s : Strength.t) with
-    | Basic ->
-        span ~a:[a_class ["strength-1"]] []
-    | Intermediate ->
-        span ~a:[a_class ["strength-2"]] []
-    | Strong ->
-        span ~a:[a_class ["strength-3"]] []
-    | VeryStrong ->
-        span ~a:[a_class ["strength-4"]] []
-  in
   let breadcrumbs = breadcrumbs @@ Breadcrumbs.of_string_list ["resume"] in
-  let language (l : Language.t') =
-    p
-      ~a:[a_class ["strength-item"]]
-      [ txt l.name
-      ; ( match l.strength with
-        | Basic ->
-            span ~a:[a_class ["strength-1"]] []
-        | Intermediate ->
-            span ~a:[a_class ["strength-2"]] []
-        | Strong ->
-            span ~a:[a_class ["strength-3"]] []
-        | VeryStrong ->
-            span ~a:[a_class ["strength-4"]] [] ) ]
-  in
-  let _sidebar_skill (s : Skill.t') =
-    p
-      [ a
-          ~a:[a_href {%eml|#<%- s.name %>|}; a_class ["strength-item"]]
-          ( ( match icon_of_string s.name with
-            | Some icon ->
-                span [icon; txt s.name]
-            | None ->
-                span [txt s.name] )
-          :: [strength s.strength] ) ]
-  in
   let formation
       ({school; diploma; description; location; date_start; date_end; result} :
         Formation.t' ) =
@@ -157,7 +121,9 @@ let resume (cv : Resume.t') =
       ; div
           ~a:[a_class ["subtitle"]]
           ( (if location <> "" then [txt (location ^ ", ")] else [])
-          @ [txt (date_start ^ " - " ^ date_end)] )
+          @ [txt date_start]
+          @ (if date_start <> "" && date_end <> "" then [txt " - "] else [])
+          @ [txt date_end] )
       ; p [txt (diploma ^ (if result <> "" then " - " else "") ^ result)]
       ; md description ]
   in
@@ -165,33 +131,25 @@ let resume (cv : Resume.t') =
       =
     div
       ~a:[a_class ["item"]]
-      [ h3 [txt company]
-      ; div
-          ~a:[a_class ["subtitle"]]
-          ( [txt title]
-          @ (if location <> "" then [txt (", " ^ location)] else [])
-          @ [txt (", " ^ date)] )
-      ; md description ]
-  in
-  let skill ({name; strength= s; description} : Skill.t') =
-    div
-      ~a:[a_class ["item"]]
-      [ h3 ~a:[a_id name; a_class ["strength-item"]] [txt name; strength s]
+      [ h3 [txt company; span ~a:[a_class ["job_title"]] [txt " - "; txt title]]
+      ; div ~a:[a_class ["subtitle"]] ([txt location] @ [txt (", " ^ date)])
       ; md description ]
   in
   page cv
     [ sidebar
         [ navmenu "Resume"
         ; contact cv
-        ; section ([h2 [txt "Languages"]] @ List.map language cv.languages)
-          (*section
-            ([h2 [txt "Technical skills"]] @ List.map sidebar_skill cv.skills)*)
-        ]
+        ; section
+            ~a:[a_id "skills"]
+            [ h2 [txt "Technical skills"]
+            ; p [txt (String.concat ", " cv.skills)]
+            ; h2 [txt "Languages"]
+            ; p [txt (String.concat ", " cv.languages)] ] ]
     ; breadcrumbs
     ; article
         ~a:[a_id "content"]
         [ h1 [txt "Resume"]
-        ; p
+        ; p ~a:[a_class ["hint"]]
             [ txt "Download this in "
             ; a ~a:[a_href "/files/resume_en.pdf"] [txt "pdf format"]
             ; txt ". Or in "
@@ -200,8 +158,8 @@ let resume (cv : Resume.t') =
         ; md cv.intro
         ; section ([h2 [txt "Formation"]] @ List.map formation cv.formations)
         ; section ([h2 [txt "Experience"]] @ List.map experience cv.experiences)
-        ; section ([h2 [txt "Technical skills"]] @ List.map skill cv.skills) ]
-    ]
+        ; section ([h2 [txt "Internships"]] @ List.map experience cv.internships)
+        ] ]
 
 let index cv =
   let breadcrumbs = breadcrumbs @@ Breadcrumbs.of_string_list [] in
@@ -246,12 +204,17 @@ let software cv =
     [ { url= "https://github.com/EmileTrotignon/ppx_format"
       ; name= "ppx_format"
       ; description=
-          {|printf style format string with string interpolation : `printf [%i "n={%d n}"]`|}
+          {|syntax extension for printf style format string with string interpolation : `printf [%i "n={%d n}"]`|}
       }
     ; { url= "https://github.com/EmileTrotignon/gamelle"
       ; name= "gamelle"
       ; description=
           "an OCaml 2D game library with browser and native backends." }
+    ; { url= "https://github.com/ahrefs/cure2"
+      ; name= "Cure2"
+      ; description=
+          {|Combinators for generating and composing Re2 regex. `"^.*"` becomes `start + rep any`|}
+      }
     ; { url= "https://github.com/EmileTrotignon/embedded_ocaml_templates"
       ; name= "ocaml_embedded_templates"
       ; description= "a template engine that uses OCaml as its logic." }

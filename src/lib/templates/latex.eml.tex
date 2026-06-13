@@ -1,0 +1,58 @@
+<%# (cv: Resume.t') (sections: Sections.t) %>
+<% let open StdLabels in %>
+\PassOptionsToPackage{colorlinks=true,urlcolor=blue,linkcolor=blue}{hyperref}
+\documentclass[10pt, a4paper, roman, french]{moderncv}
+\moderncvstyle{classic}
+\moderncvcolor{purple}
+\usepackage[utf8]{inputenc}
+\usepackage[light]{CormorantGaramond}
+\usepackage[T1]{fontenc}
+\usepackage[scale=0.75,a4paper]{geometry}
+\usepackage{babel}
+\usepackage{geometry}
+\usepackage{tikz}
+\geometry{hmargin=2.5cm,vmargin=1.5cm}
+
+\definecolor{white}{HTML}{DDDDDD}
+\definecolor{gray}{HTML}{404040}
+\definecolor{purple}{HTML}{8054cc}
+
+\DeclareRobustCommand{\skills}[1]{
+    \texorpdfstring{\protect\tikz[baseline]{
+		\filldraw[fill=white, draw=gray] (0,0) rectangle (5,0.175);
+		\draw[fill=purple](0,0) rectangle ({#1},0.175);
+    }}{skill level {#1}}
+}
+
+\firstname{<%- cv.firstname %>}
+\familyname{<%- cv.lastname %>}
+\mobile{<%- cv.phonenumber %>}
+\extrainfo{<%- sections.born %> <%- cv.birthdate %>}
+\email{<%- cv.email %>}
+% \photo[64pt][0.4pt]{Image} %
+\begin{document}
+	\makecvtitle
+	<% List.iteri cv.skills ~f:begin fun i skill -> %><% if i <> 0 then (%>, <%) ; %><%- skill %><% end ; %>
+
+	\medskip
+
+	<% List.iteri cv.languages ~f:begin fun i language -> %><% if i <> 0 then (%>, <%) ; %><%- language %><% end ; %>
+
+	\medskip
+
+	<%- cv.intro %>
+
+	\section{<%- sections.formation %>}
+	<% List.iter cv.formations ~f:(fun (f:Formation.t') -> %>
+		\cventry{<%- f.date_start%> <%- if f.date_start <> "" && f.date_end <> "" then "--" else "" %> <%- f.date_end %> }{<%- f.diploma %>}{<%- f.school %>}{}{}{}
+	<% ) ; %>
+	\section{<%- sections.experience %>}
+	<% List.iter cv.experiences ~f:(fun (e:Experience.t') -> %>
+		\cventry{<%- e.date %>}{<%- e.company %>}{<%- e.title %> }{<%- e.location %>}{}{<%- e.description %>}
+	 <% ) ; %>
+	\section{<%- sections.internships %>}
+	<% List.iter cv.internships ~f:(fun (e:Experience.t') -> %>
+		\cventry{<%- e.date %>}{<%- e.company %>}{<%- e.title %> }{<%- e.location %>}{}{<%- e.description %>}
+	 <% ) ; %>
+
+\end{document}
