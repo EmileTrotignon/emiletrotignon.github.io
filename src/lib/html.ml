@@ -152,8 +152,8 @@ let resume (cv : Resume.t') =
         ; p ~a:[a_class ["hint"]]
             [ txt "Download this in "
             ; a ~a:[a_href "/files/resume_en.pdf"] [txt "pdf format"]
-            ; txt ". Or in "
-            ; a ~a:[a_href "/files/resume_fr.pdf"] [txt "french"]
+            ; txt ", or in "
+            ; a ~a:[a_href "/files/resume_fr.pdf"] [txt "French"]
             ; txt "." ]
         ; md cv.intro
         ; section ([h2 [txt "Formation"]] @ List.map formation cv.formations)
@@ -172,7 +172,7 @@ let index cv =
             [ p [txt "Welcome to my home page"]
             ; md
                 {|I used to be a student in computer science at ENS Paris-Saclay, nowadays I am a dev at Tarides,
-were I work on tools for ocaml like odoc and ocamlformat.
+where I work on tools for OCaml like odoc and ocamlformat.
 
 I am very interested in the OCaml language and programming languages in general.
 You can check some of my projects out on my [github](https://github.com/EmileTrotignon),

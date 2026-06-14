@@ -14,7 +14,7 @@ let intro =
     ~en:
       "I am a passionate dev with wide interests and a focus in functional \
        programming. I like clean code, powerful abstractions, and APIs that \
-       forces to do the right thing.\n\n\
+       force you to do the right thing.\n\n\
        I have made extensive contributions to the OCaml ecosystem, see my \
        [software](/software) page."
 
@@ -54,10 +54,10 @@ let experiences =
           ~fr:
             "Outillage interne. Écriture d'un linter pour OCaml avec \
              possibilité de création de règles customisées. Tableau grafana \
-             pour observer les tailles d'éxecutables et autres métriques. \
+             pour observer les tailles d'exécutables et autres métriques. \
              Refactorisation du système de déploiement par la CI (buildkite). \
              Écriture d'un parser et printer d'URL pour prévention des \
-             attaques Server-Side Request Forgery. Contribution a un PPX \
+             attaques Server-Side Request Forgery. Contribution à un PPX \
              générant des requêtes Clickhouse bien typées. Slack bot \
              s'interfaçant avec Github et Buildkite"
           ~en:
@@ -149,7 +149,7 @@ let internships =
              Nivoliers. My goal during this internship was to uniformly sample \
              the surface of a potentially imperfect mesh. Implementation in \
              C++ with Polyscope and LIBIGL. [Report \
-             (french)](/files/rapport.pdf)."
+             (French)](/files/rapport.pdf)."
       end
       (v ~fr:"Laboratoire LIRIS" ~en:"LIRIS laboratory")
       ~location:(I "Lyon, France")
@@ -159,15 +159,15 @@ let internships =
       ~description:begin
         v
           ~fr:
-            "Mission  de 6 semaines pour la junior entreprise de l'ENS \
-             Paris-Saclay de 6 semaines. Développement d'une plateforme de \
-             freelancing. Node.js. Express.js et MangoDB. J'ai notamment mis \
+            "Mission de 6 semaines pour la junior entreprise de l'ENS \
+             Paris-Saclay. Développement d'une plateforme de \
+             freelancing. Node.js. Express.js et MongoDB. J'ai notamment mis \
              en place un système pour remplir automatiquement le formulaire de \
              CV en parsant un CV LinkedIn sous format PDF."
           ~en:
             "Six-week mission for the junior enterprise of ENS Paris-Saclay. \
              Website development of a freelancing platform. The stack was \
-             Node.js, Express.js, and MangoDB. Parsed LinkedIn resumes in PDF \
+             Node.js, Express.js, and MongoDB. Parsed LinkedIn resumes in PDF \
              format to auto-fill the resume form."
       end
       (v ~fr:"Junior entreprise de l'ENS Paris-Saclay"
@@ -195,7 +195,7 @@ let internships =
             end*)
   ; make
       (v ~fr:"Développeur stagiaire C#" ~en:"Intern C# developer")
-      (I "Eternix Ldt.")
+      (I "Eternix Ltd.")
       (v ~fr:"Été 2019" ~en:"Summer 2019")
       ~location:(I "Tel Aviv, Israel")
       ~description:begin
@@ -223,8 +223,8 @@ let internships =
             "Intégration graphique du site web de l'ENSSIB: \
              [enssib.fr](http://www.enssib.fr)"
           ~en:
-            "Graphical integration of the French school for library curators \
-             website's: [enssib.fr](http://www.enssib.fr)"
+            "Graphical integration of the French school for library curators' \
+             website: [enssib.fr](http://www.enssib.fr)"
       end ]
 
 let emile =
