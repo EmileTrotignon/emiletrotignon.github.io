@@ -9,7 +9,7 @@ let intro =
        spécialisation en programmation fonctionnelle. J'aime le code propre, \
        les abstractions puissantes et les API qui empêchent de faire des \
        erreurs.\n\n\
-       J'ai beaucoup contribué à l’écosystème OCaml, voir ma page \
+       J'ai beaucoup contribué à l'écosystème OCaml, voir ma page \
        [software](/software)"
     ~en:
       "I am a passionate dev with wide interests and a focus in functional \
