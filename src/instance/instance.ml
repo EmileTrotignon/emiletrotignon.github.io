@@ -57,17 +57,17 @@ let experiences =
              pour observer les tailles d'exécutables et autres métriques. \
              Refactorisation du système de déploiement par la CI (buildkite). \
              Écriture d'un parser et printer d'URL pour prévention des \
-             attaques Server-Side Request Forgery. Contribution à un PPX \
-             générant des requêtes Clickhouse bien typées. Slack bot \
-             s'interfaçant avec Github et Buildkite"
+             attaques Server-Side Request Forgery. Contribution à une \
+             extension de syntaxe générant des requêtes Clickhouse bien \
+             typées. Slack bot s'interfaçant avec Github et Buildkite"
           ~en:
             "Worked on internal tooling. Made a linter for OCaml code that \
              allows writing custom rules, grafana charts to observe executable \
              file sizes and other metrics, refactoring of the CI deployment \
              system (buildkite). Wrote a URL parser/printer to prevent \
-             Server-Side Request Forgery attacks. Contributed to a ppx for \
-             type-safe clickhouse queries. Slack bot integrating with Github \
-             and Buildkite."
+             Server-Side Request Forgery attacks. Contributed to a syntax \
+             extension for type-safe clickhouse queries. Slack bot integrating \
+             with Github and Buildkite."
       end
       (I "Ahrefs") ~location:(I "Remote")
       (v ~fr:"2024 - présent" ~en:"2024 - present")
@@ -160,10 +160,10 @@ let internships =
         v
           ~fr:
             "Mission de 6 semaines pour la junior entreprise de l'ENS \
-             Paris-Saclay. Développement d'une plateforme de \
-             freelancing. Node.js. Express.js et MongoDB. J'ai notamment mis \
-             en place un système pour remplir automatiquement le formulaire de \
-             CV en parsant un CV LinkedIn sous format PDF."
+             Paris-Saclay. Développement d'une plateforme de freelancing. \
+             Node.js. Express.js et MongoDB. J'ai notamment mis en place un \
+             système pour remplir automatiquement le formulaire de CV en \
+             parsant un CV LinkedIn sous format PDF."
           ~en:
             "Six-week mission for the junior enterprise of ENS Paris-Saclay. \
              Website development of a freelancing platform. The stack was \
