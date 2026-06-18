@@ -75,11 +75,14 @@ let typst_renderer () =
         | None -> false
         | Some (url, _) ->
           let full_url = make_full_url url in
+          let display_url = strip_scheme full_url in
           Cmarkit_renderer.Context.string c {|#link("|};
           Cmarkit_renderer.Context.string c full_url;
           Cmarkit_renderer.Context.string c {|")[|};
           Cmarkit_renderer.Context.inline c (Cmarkit.Inline.Link.text link);
-          Cmarkit_renderer.Context.string c "]";
+          Cmarkit_renderer.Context.string c {| #box[#text(size: 0.85em)[(|};
+          Cmarkit_renderer.Context.string c (typst_escape display_url);
+          Cmarkit_renderer.Context.string c {|)]]]|};
           true ) )
     | Cmarkit.Inline.Text (s, _) ->
       Cmarkit_renderer.Context.string c (typst_escape s);

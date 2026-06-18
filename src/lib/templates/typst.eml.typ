@@ -9,9 +9,10 @@
     email: "<%- cv.email %>",
     position: "<%- cv.position %>",
     github: "EmileTrotignon",
+    website: "emiletrotignon.github.io",
   ),
   paper-size: "a4",
-  body-font-size: 10.5pt,
+  body-font-size: 10pt,
   body-font: "Libertinus Serif",
   heading-font: "Libertinus Serif",
   // Charcoal headings (also tints neat-cv's heading rules / accent elements).

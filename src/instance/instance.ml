@@ -53,8 +53,9 @@ let experiences =
         v
           ~fr:
             "Outillage interne. Écriture d'un linter pour OCaml avec \
-             possibilité de création de règles customisées. Tableau grafana \
-             pour observer les tailles d'exécutables et autres métriques. \
+             possibilité de création de règles customisées et serveur LSP.\n\n\
+             Tableau grafana pour observer les tailles d'exécutables et autres \
+             métriques. \n\n\
              Refactorisation du système de déploiement par la CI (buildkite). \
              Écriture d'un parser et printer d'URL pour prévention des \
              attaques Server-Side Request Forgery. Contribution à une \
@@ -62,12 +63,13 @@ let experiences =
              typées. Slack bot s'interfaçant avec Github et Buildkite"
           ~en:
             "Worked on internal tooling. Made a linter for OCaml code that \
-             allows writing custom rules, grafana charts to observe executable \
-             file sizes and other metrics, refactoring of the CI deployment \
-             system (buildkite). Wrote a URL parser/printer to prevent \
-             Server-Side Request Forgery attacks. Contributed to a syntax \
-             extension for type-safe clickhouse queries. Slack bot integrating \
-             with Github and Buildkite."
+             allows writing custom rules, and has an LSP server.\n\n\
+             Grafana charts to observe executable file sizes and other \
+             metrics, refactoring of the CI deployment system (buildkite).\n\n\
+             Wrote a URL parser/printer to prevent Server-Side Request Forgery \
+             attacks. Contributed to a syntax extension for type-safe \
+             clickhouse queries. Slack bot integrating with Github and \
+             Buildkite."
       end
       (I "Ahrefs") ~location:(I "Remote")
       (v ~fr:"2024 - présent" ~en:"2024 - present")
