@@ -32,9 +32,12 @@
 % \photo[64pt][0.4pt]{Image} %
 \begin{document}
 	\makecvtitle
+
+	\subsection{Skills}
+
 	<% List.iteri cv.skills ~f:begin fun i skill -> %><% if i <> 0 then (%>, <%) ; %><%- skill %><% end ; %>
 
-	\medskip
+	\subsection{Languages}
 
 	<% List.iteri cv.languages ~f:begin fun i language -> %><% if i <> 0 then (%>, <%) ; %><%- language %><% end ; %>
 

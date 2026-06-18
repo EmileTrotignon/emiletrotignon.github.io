@@ -2,6 +2,7 @@ open StdLabels
 
 type t =
   { intro: Cmarkit.Doc.t Multi_string.t
+  ; position: string Multi_string.t
   ; formations: Formation.t list
   ; experiences: Experience.t list
   ; internships: Experience.t list
@@ -16,6 +17,7 @@ type t =
 
 type t' =
   { intro: string
+  ; position: string
   ; formations: Formation.t' list
   ; experiences: Experience.t' list
   ; internships: Experience.t' list
@@ -30,6 +32,7 @@ type t' =
 
 let to_t' ?(escaper = Fun.id) language model
     ({ intro
+     ; position
      ; formations
      ; experiences
      ; internships
@@ -43,13 +46,20 @@ let to_t' ?(escaper = Fun.id) language model
      ; birthdate } :
       t ) : t' =
   { intro= model (Multi_string.to_string language intro)
+  ; position= Multi_string.to_string language position
   ; formations= List.map ~f:(Formation.to_t' ~escaper language model) formations
   ; experiences=
       List.map ~f:(Experience.to_t' ~escaper language model) experiences
   ; internships=
       List.map ~f:(Experience.to_t' ~escaper language model) internships
-  ; skills= List.map ~f:(fun skill -> escaper (Multi_string.to_string language skill)) skills
-  ; languages= List.map ~f:(fun l -> escaper (Multi_string.to_string language l)) languages
+  ; skills=
+      List.map
+        ~f:(fun skill -> escaper (Multi_string.to_string language skill))
+        skills
+  ; languages=
+      List.map
+        ~f:(fun l -> escaper (Multi_string.to_string language l))
+        languages
   ; firstname= escaper (Multi_string.to_string language firstname)
   ; lastname= escaper (Multi_string.to_string language lastname)
   ; phonenumber= escaper (Multi_string.to_string language phonenumber)
@@ -57,9 +67,11 @@ let to_t' ?(escaper = Fun.id) language model
   ; website= escaper (Multi_string.to_string language website)
   ; birthdate= escaper (Multi_string.to_string language birthdate) }
 
-let make ~intro ~formations ~experiences ~internships ~skills ~languages
-    ~firstname ~lastname ~phonenumber ~email ~website ~birthdate : t =
+let make ~intro ~position ~formations ~experiences ~internships ~skills
+    ~languages ~firstname ~lastname ~phonenumber ~email ~website ~birthdate : t
+    =
   { intro= Multi_string.map Cmarkit.Doc.of_string intro
+  ; position
   ; formations
   ; experiences
   ; internships

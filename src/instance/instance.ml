@@ -229,6 +229,7 @@ let internships =
 
 let emile =
   Resume.make ~firstname:(I "Émile") ~lastname:(I "Trotignon") ~intro
+    ~position:(v ~en:"Software engineer" ~fr:"Ingénieur logiciel")
     ~formations ~experiences ~internships
     ~languages:[v ~fr:"Anglais" ~en:"English"; v ~fr:"Français" ~en:"French"]
     ~skills:

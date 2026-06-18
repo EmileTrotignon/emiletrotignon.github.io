@@ -149,7 +149,8 @@ let resume (cv : Resume.t') =
     ; article
         ~a:[a_id "content"]
         [ h1 [txt "Resume"]
-        ; p ~a:[a_class ["hint"]]
+        ; p
+            ~a:[a_class ["hint"]]
             [ txt "Download this in "
             ; a ~a:[a_href "/files/resume_en.pdf"] [txt "pdf format"]
             ; txt ", or in "
@@ -171,12 +172,17 @@ let index cv =
         [ section
             [ p [txt "Welcome to my home page"]
             ; md
-                {|I used to be a student in computer science at ENS Paris-Saclay, nowadays I am a dev at Tarides,
-where I work on tools for OCaml like odoc and ocamlformat.
+                {|I used to be a student in computer science at ENS Paris-Saclay, nowadays I am a dev at Ahrefs,
+where I work on internal tooling.
 
-I am very interested in the OCaml language and programming languages in general.
-You can check some of my projects out on my [github](https://github.com/EmileTrotignon),
-and my resume on this website.|}
+I have wide interests, I have worked on development tools, 2D game libraries,
+regexp libraries. Most of my work has been in OCaml, but I started programming
+at 12 in python, and during my studies I tried a bunch of languages, C++, JS,
+Scala, Rust.
+
+You can check some of my projects out on my
+[github](https://github.com/EmileTrotignon) or on my [software](/software) page,
+and my [resume](/resume) on this website.|}
             ] ] ]
 
 type software = {url: string; name: string; description: string}

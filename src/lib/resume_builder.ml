@@ -53,6 +53,75 @@ let to_latex (resume : t) language =
   | English ->
       Templates.latex (to_t' ~escaper language md_printer resume) Sections.en
 
+let typst_escape s =
+  let b = Buffer.create (String.length s) in
+  String.iter
+    (fun c ->
+      (match c with
+      | '#' | '_' | '*' | '~' | '`' | '$' | '\\' | '[' | ']' | '<' | '>' ->
+        Buffer.add_char b '\\'
+      | _ -> ());
+      Buffer.add_char b c)
+    s;
+  Buffer.contents b
+
+let typst_renderer () =
+  let inline c = function
+    | Cmarkit.Inline.Link (link, _) -> (
+      match Cmarkit.Inline.Link.reference link with
+      | `Ref _ -> false
+      | `Inline (link_def, _) -> (
+        match Cmarkit.Link_definition.dest link_def with
+        | None -> false
+        | Some (url, _) ->
+          let full_url = make_full_url url in
+          Cmarkit_renderer.Context.string c {|#link("|};
+          Cmarkit_renderer.Context.string c full_url;
+          Cmarkit_renderer.Context.string c {|")[|};
+          Cmarkit_renderer.Context.inline c (Cmarkit.Inline.Link.text link);
+          Cmarkit_renderer.Context.string c "]";
+          true ) )
+    | Cmarkit.Inline.Text (s, _) ->
+      Cmarkit_renderer.Context.string c (typst_escape s);
+      true
+    | Cmarkit.Inline.Inlines (inlines, _) ->
+      List.iter (Cmarkit_renderer.Context.inline c) inlines;
+      true
+    | Cmarkit.Inline.Break (b, _) ->
+      ( match Cmarkit.Inline.Break.type' b with
+      | `Soft -> Cmarkit_renderer.Context.string c "\n"
+      | `Hard -> Cmarkit_renderer.Context.string c "\\\n" );
+      true
+    | _ -> false
+  in
+  let block c = function
+    | Cmarkit.Block.Paragraph (para, _) ->
+      Cmarkit_renderer.Context.inline c (Cmarkit.Block.Paragraph.inline para);
+      Cmarkit_renderer.Context.string c "\n\n";
+      true
+    | Cmarkit.Block.Blocks (blocks, _) ->
+      List.iter (Cmarkit_renderer.Context.block c) blocks;
+      true
+    | Cmarkit.Block.Blank_line _ -> true
+    | _ -> true
+  in
+  let doc c d =
+    Cmarkit_renderer.Context.block c (Cmarkit.Doc.block d);
+    true
+  in
+  Cmarkit_renderer.make ~inline ~block ~doc ()
+
+let to_typst (resume : t) language =
+  let renderer = typst_renderer () in
+  let md_printer = Cmarkit_renderer.doc_to_string renderer in
+  let escaper = typst_escape in
+  let open Multi_string in
+  match language with
+  | French ->
+      Templates.typst (to_t' ~escaper language md_printer resume) Sections.fr
+  | English ->
+      Templates.typst (to_t' ~escaper language md_printer resume) Sections.en
+
 let html_escaper_pattern = Tyre.(compile (const "<br>" (str "\n")))
 
 let to_html (resume : t) language =

@@ -8,6 +8,10 @@ let () =
     (Resume_builder.to_latex Instance.emile Multi_string.French) ;
   write_all "en.tex"
     (Resume_builder.to_latex Instance.emile Multi_string.English) ;
+  write_all "fr.typ"
+    (Resume_builder.to_typst Instance.emile Multi_string.French) ;
+  write_all "en.typ"
+    (Resume_builder.to_typst Instance.emile Multi_string.English) ;
   write_all "resume.html"
     ( Html.to_string
     @@ Html.resume (Resume_builder.to_html Instance.emile Multi_string.English)
