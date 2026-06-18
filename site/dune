@@ -30,7 +30,7 @@
  (files icons/*.svg))
 
 (rule
- (targets fr.tex en.tex fr.typ en.typ resume.html index.html 404.html software.html)
+ (targets fr.typ en.typ resume.html index.html 404.html software.html)
  (alias site)
  (deps ../src/main.exe)
  (action

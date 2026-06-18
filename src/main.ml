@@ -4,10 +4,6 @@ let write_all path data =
   Out_channel.with_open_text path (fun oc -> output_string oc data)
 
 let () =
-  write_all "fr.tex"
-    (Resume_builder.to_latex Instance.emile Multi_string.French) ;
-  write_all "en.tex"
-    (Resume_builder.to_latex Instance.emile Multi_string.English) ;
   write_all "fr.typ"
     (Resume_builder.to_typst Instance.emile Multi_string.French) ;
   write_all "en.typ"

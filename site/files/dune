@@ -1,25 +1,5 @@
 (rule
- (deps
-  (file ../en.tex))
  (target resume_en.pdf)
- (alias site)
- (action
-  (progn
-   (run lualatex ../en.tex)
-   (run mv en.pdf %{target}))))
-
-(rule
- (deps
-  (file ../fr.tex))
- (target resume_fr.pdf)
- (alias site)
- (action
-  (progn
-   (run lualatex ../fr.tex)
-   (run mv fr.pdf %{target}))))
-
-(rule
- (target resume_en_typst.pdf)
  (alias site)
  (deps
   (file ../en.typ)
@@ -33,6 +13,23 @@
    --font-path
    ../fonts
    ../en.typ
+   %{target})))
+
+(rule
+ (target resume_fr.pdf)
+ (alias site)
+ (deps
+  (file ../fr.typ)
+  (file emile.jpg)
+  (glob_files ../fonts/*.otf))
+ (action
+  (run
+   typst
+   compile
+   --ignore-system-fonts
+   --font-path
+   ../fonts
+   ../fr.typ
    %{target})))
 
 (alias

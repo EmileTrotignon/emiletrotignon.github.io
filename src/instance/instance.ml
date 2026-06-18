@@ -172,6 +172,7 @@ let internships =
              Node.js, Express.js, and MongoDB. Parsed LinkedIn resumes in PDF \
              format to auto-fill the resume form."
       end
+      ~location:(I "Remote")
       (v ~fr:"Junior entreprise de l'ENS Paris-Saclay"
          ~en:"Junior enterprise of ENS Paris-Saclay" )
       (v ~fr:"Mars 2020" ~en:"March 2020")

@@ -47,22 +47,10 @@ jobs:
       - name: Install Sass
         run: npm install -g sass
 
-      - name: Cache LaTeX packages
-        id: cache-texlive
-        uses: actions/cache@v4
+      - name: Install Typst
+        uses: typst-community/setup-typst@v5
         with:
-          path: /var/cache/apt/archives
-          key: texlive-${{ runner.os }}-v1
-
-      - name: Install LaTeX
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            texlive-luatex \
-            texlive-latex-extra \
-            texlive-fonts-extra \
-            texlive-fonts-recommended \
-            texlive-lang-french
+          typst-version: "0.14.2"
 
       - name: Build site
         run: opam exec -- dune build @site
