@@ -9,7 +9,7 @@
     email: "<%- cv.email %>",
     position: "<%- cv.position %>",
     github: "EmileTrotignon",
-    website: "emiletrotignon.github.io",
+    website: "https://emiletrotignon.github.io",
   ),
   paper-size: "a4",
   body-font-size: 10pt,
