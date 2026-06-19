@@ -38,7 +38,7 @@
 
   = <%- sections.skills %>
 
-<% List.iteri cv.skills ~f:(fun i skill -> if i <> 0 then (%>, <%) ;%><%- skill %><% ) ; %>
+<% List.iteri cv.skills ~f:(fun i skill -> if i <> 0 then (%>, <%) ;%>#box[<%- skill %>]<% ) ; %>
 
   = <%- sections.languages %>
 
