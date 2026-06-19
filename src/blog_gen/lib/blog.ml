@@ -20,7 +20,7 @@ let html_into_page ~path html =
   Html.to_string
   @@ Html.blog
        (Resume_builder.to_html Instance.emile Multi_string.English)
-       html breadcrumbs
+       html breadcrumbs Sections.en
 
 let html_of_markdown ~path (md : string) =
   html_into_page ~path

@@ -9,7 +9,7 @@ let breadcrumbs bc =
          li [a ~a:[a_href ("/" ^ String.concat "/" path)] [txt name]] )
        bc )
 
-let contact (cv : Resume.t') =
+let contact (cv : Resume.t') (sections : Sections.t) =
   section
     [ p
         [ a
@@ -25,7 +25,7 @@ let contact (cv : Resume.t') =
                 ~a:[a_class ["icon"]]
                 [i ~a:[a_class ["fas"; "fa-envelope"; "fa-lg"]] []]
             ; txt cv.email ] ]
-    ; p [txt {%eml|Born <%=cv.birthdate%>|}] ]
+    ; p [txt {%eml|<%= sections.born %> <%=cv.birthdate%>|}] ]
 
 let navmenu current =
   let navmenu_item ?id name url =
@@ -92,7 +92,7 @@ let page (cv : Resume.t') content =
 let md str : [> `P] elt =
   Unsafe.data (Cmarkit_html.of_doc ~safe:false (Cmarkit.Doc.of_string str))
 
-let resume (cv : Resume.t') =
+let resume (cv : Resume.t') (sections : Sections.t) =
   let _icon_of_string s =
     let icon_of_filename filename =
       img
@@ -138,12 +138,12 @@ let resume (cv : Resume.t') =
   page cv
     [ sidebar
         [ navmenu "Resume"
-        ; contact cv
+        ; contact cv sections
         ; section
             ~a:[a_id "skills"]
-            [ h2 [txt "Technical skills"]
+            [ h2 [txt sections.skills]
             ; p [txt (String.concat ", " cv.skills)]
-            ; h2 [txt "Languages"]
+            ; h2 [txt sections.languages]
             ; p [txt (String.concat ", " cv.languages)] ] ]
     ; breadcrumbs
     ; article
@@ -157,15 +157,18 @@ let resume (cv : Resume.t') =
             ; a ~a:[a_href "/files/resume_fr.pdf"] [txt "French"]
             ; txt "." ]
         ; md cv.intro
-        ; section ([h2 [txt "Formation"]] @ List.map formation cv.formations)
-        ; section ([h2 [txt "Experience"]] @ List.map experience cv.experiences)
-        ; section ([h2 [txt "Internships"]] @ List.map experience cv.internships)
-        ] ]
+        ; section
+            ([h2 [txt sections.formation]] @ List.map formation cv.formations)
+        ; section
+            ([h2 [txt sections.experience]] @ List.map experience cv.experiences)
+        ; section
+            ( [h2 [txt sections.internships]]
+            @ List.map experience cv.internships ) ] ]
 
-let index cv =
+let index cv sections =
   let breadcrumbs = breadcrumbs @@ Breadcrumbs.of_string_list [] in
   page cv
-    [ sidebar [navmenu "Index"; contact cv]
+    [ sidebar [navmenu "Index"; contact cv sections]
     ; breadcrumbs
     ; article
         ~a:[a_id "content"]
@@ -187,7 +190,7 @@ and my [resume](/resume) on this website.|}
 
 type software = {url: string; name: string; description: string}
 
-let software cv =
+let software cv sections =
   let one_software {url; name; description} =
     let description_html =
       let s =
@@ -246,7 +249,7 @@ let software cv =
       ; description= "the OCaml LR1 parser generator." } ]
   in
   page cv
-    [ sidebar [navmenu "Software"; contact cv]
+    [ sidebar [navmenu "Software"; contact cv sections]
     ; breadcrumbs
     ; article
         ~a:[a_id "content"]
@@ -256,16 +259,16 @@ let software cv =
             ; p [txt "I have also contributed to the following projects:"]
             ; ul (List.map one_software contributions) ] ] ]
 
-let page_404 cv =
+let page_404 cv sections=
   page cv
-    [ sidebar [navmenu "Error 404"; contact cv]
+    [ sidebar [navmenu "Error 404"; contact cv sections]
     ; article
         ~a:[a_id "content"]
         [section [h1 [txt "Error 404 : page was not found."]]] ]
 
 let to_string ty = Format.asprintf "%a" (Tyxml_html.pp ()) ty
 
-let blog cv blog bc =
+let blog cv blog bc sections =
   (*
     <%# (cv: Resume.t') (blog: string) breadcrumbs %>
 <%- page_top cv %>
@@ -282,6 +285,6 @@ let blog cv blog bc =
 
 <%- page_bot %>*)
   page cv
-    [ sidebar [navmenu "Blog"; contact cv]
+    [ sidebar [navmenu "Blog"; contact cv sections]
     ; breadcrumbs bc
     ; article ~a:[a_id "content"] [Unsafe.data blog] ]

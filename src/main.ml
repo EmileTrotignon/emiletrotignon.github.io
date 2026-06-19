@@ -10,17 +10,21 @@ let () =
     (Resume_builder.to_typst Instance.emile Multi_string.English) ;
   write_all "resume.html"
     ( Html.to_string
-    @@ Html.resume (Resume_builder.to_html Instance.emile Multi_string.English)
-    ) ;
+    @@ Html.resume
+         (Resume_builder.to_html Instance.emile Multi_string.English)
+         Sections.en ) ;
   write_all "index.html"
     ( Html.to_string
-    @@ Html.index (Resume_builder.to_html Instance.emile Multi_string.English)
-    ) ;
+    @@ Html.index
+         (Resume_builder.to_html Instance.emile Multi_string.English)
+         Sections.en ) ;
   write_all "software.html"
     ( Html.to_string
     @@ Html.software
-         (Resume_builder.to_html Instance.emile Multi_string.English) ) ;
+         (Resume_builder.to_html Instance.emile Multi_string.English)
+         Sections.en ) ;
   write_all "404.html"
     ( Html.to_string
     @@ Html.page_404
-         (Resume_builder.to_html Instance.emile Multi_string.English) )
+         (Resume_builder.to_html Instance.emile Multi_string.English)
+         Sections.en )
