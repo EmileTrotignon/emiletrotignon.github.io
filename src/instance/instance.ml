@@ -243,7 +243,8 @@ let emile =
       ; I "C#"
       ; I "Node.js"
       ; I "C++"
-      ; I "Python" ]
+      ; I "Python"
+      ; v ~fr:"Utilisation de LLM" ~en:"Using LLMs" ]
     ~phonenumber:(I "+33 7 82 89 83 58") ~email:(I "emile.trotignon@gmail.com")
     ~website:(I "emiletrotignon.github.io")
     ~birthdate:(v ~fr:"30 juillet 1999" ~en:"July 30th, 1999")
