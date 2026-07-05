@@ -35,4 +35,5 @@
 (alias
  (name site)
  (deps
-  (glob_files ./*.pdf)))
+  (glob_files ./*.pdf)
+  (glob_files ./*.html)))
